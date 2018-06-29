@@ -1,0 +1,25 @@
+.comic {
+    width: 280px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.imageContainer {
+    padding-top: 1.5em;
+}
+
+#shuffleBtn {
+    padding-top: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background: white;
+    font: 14px "Century Gothic", Futura, sans-serif;
+    border: 2px solid black;
+}
+
+#comicName {
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+}
