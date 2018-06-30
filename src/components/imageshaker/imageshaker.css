@@ -1,5 +1,9 @@
+:root {
+    --image-width: 280px;
+}
+
 .comic {
-    width: 280px;
+    width: var(--image-width);
 }
 
 #comicContainer {
@@ -7,7 +11,7 @@
 }
 
 #imageContainer {
-    width: 280px;
+    width: var(--image-width);
     margin-left: auto;
     margin-right: auto;
 }
