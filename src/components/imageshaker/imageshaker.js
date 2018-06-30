@@ -46,10 +46,12 @@ export default class ImageShaker extends React.Component {
 
     render = () => {
         return (
-            <div className={"imageContainer"}>
-                <img className={"comic"} src={this.state.payload.img} alt={"Random comic"}/>
-                <div id={"comicName"}>
-                    <span>{this.state.payload.title}</span>
+            <div id={"comicContainer"}>
+                <div id={"imageContainer"}>
+                    <img className={"comic"} src={this.state.payload.img} alt={"Random comic"}/>
+                    <div id={"comicName"}>
+                        <span>{this.state.payload.title}</span>
+                    </div>
                 </div>
                 <button id={"shuffleBtn"} onClick={this.updateImage}>Get me another one!</button>
             </div>

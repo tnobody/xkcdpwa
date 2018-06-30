@@ -1,12 +1,15 @@
 .comic {
     width: 280px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.imageContainer {
+#comicContainer {
     padding-top: 1.5em;
+}
+
+#imageContainer {
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #shuffleBtn {
