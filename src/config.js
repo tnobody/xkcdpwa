@@ -1,5 +1,5 @@
 const currentConfig = {
-    backend: "https://xkcd.now.sh/"
+    dataUrl: "https://xkcd.now.sh/"
 };
 
 export default currentConfig;

@@ -10,7 +10,7 @@ export default class ImageShaker extends React.Component {
         this.state = {
             payload: {}
         };
-        this.fetchPayload(currentConfig.backend).then(body => {
+        this.fetchPayload(this.getDataUrl()).then(body => {
             this.setState({
                 maxComics: body.num
             })
@@ -21,12 +21,18 @@ export default class ImageShaker extends React.Component {
         this.updateImage();
     };
 
-    updateImage = () => {
-        let url = currentConfig.backend;
-
-        if (this.state.maxComics) {
-            url += Math.floor((Math.random() * this.state.maxComics) + 1);
+    getDataUrl = (range) => {
+        let url = currentConfig.dataUrl;
+        if (range) {
+            url += Math.floor((Math.random() * range) + 1);
         }
+
+        return url;
+    };
+
+    updateImage = () => {
+        const url = this.getDataUrl(this.state.maxComics);
+
         this.fetchPayload(url).then(body => {
             this.setState({
                 payload: body
@@ -48,9 +54,9 @@ export default class ImageShaker extends React.Component {
         return (
             <div id={"comicContainer"}>
                 <div id={"imageContainer"}>
-                    <img className={"comic"} src={this.state.payload.img} alt={"Random comic"}/>
+                    <img className={"comic"} src={this.state.payload.img} alt={this.state.payload.alt}/>
                     <div id={"comicName"}>
-                        <span>{this.state.payload.title}</span>
+                        <span>#{this.state.payload.num} | {this.state.payload.title}</span>
                     </div>
                 </div>
                 <button id={"shuffleBtn"} onClick={this.updateImage}>Get me another one!</button>
