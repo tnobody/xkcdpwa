@@ -52,22 +52,6 @@
     margin-right: auto;
 }
 
-#shuffleBtn {
-    padding-top: 1.5em;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    background: white;
-    font: 1em "Century Gothic", Futura, sans-serif;
-    border: 2px solid black;
-}
-
-@media screen and (min-width : 768px) {
-    #shuffleBtn {
-        font: 1.5em "Century Gothic", Futura, sans-serif;
-    }
-}
-
 #comicName {
     padding-top: 0.5em;
     padding-bottom: 1.5em;
@@ -78,3 +62,28 @@
         font: 1.5em "Century Gothic", Futura, sans-serif;
     }
 }
+
+.buttongroup {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.clearer { clear: both; }
+
+.buttongroup button {
+    padding-top: 1.5em;
+    background: white;
+    font: 1em "Century Gothic", Futura, sans-serif;
+    border: 2px solid black;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 1.5em;
+}
+
+@media screen and (min-width : 768px) {
+    .buttongroup button {
+        font: 1.5em "Century Gothic", Futura, sans-serif;
+    }
+}
+
