@@ -2,7 +2,7 @@
   "name": "xkcdpwa",
   "short_name": "xkcdpwa",
   "start_url": "./index.html",
-  "scope": "/xkcdpwa",
+  "scope": "./xkcdpwa",
   "display": "standalone",
   "background_color": "#aaa",
   "theme_color": "#aaa",
