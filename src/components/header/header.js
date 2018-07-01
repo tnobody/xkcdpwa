@@ -6,7 +6,7 @@ export default class Header extends React.Component {
         return (
             <header>
                 <div id={"headerContainer"}>
-                    <img src="/img/logo.png" alt={"Logo"}/>
+                    <img src={process.env.PUBLIC_URL + "/img/logo.png"} alt={"Logo"}/>
                     <span className={"title"}>pwa</span>
                 </div>
             </header>
