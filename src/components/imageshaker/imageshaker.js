@@ -24,7 +24,7 @@ export default class ImageShaker extends React.Component {
     getDataUrl = (range) => {
         let url = currentConfig.dataUrl;
         if (range) {
-            url += Math.floor((Math.random() * range) + 1);
+            url += Math.floor((Math.random() * (range - 1)) + 1);
         }
 
         return url;
