@@ -83,7 +83,7 @@ self.onfetch = (event) => {
                     return fetchedResponse
                         .then(resp => {
                             console.log(resp);
-                            if (!isDataURL(event.request.url) && NON_CACHE_METHODS.indexOf(event.request.method) < 0) {
+                            if (NON_CACHE_METHODS.indexOf(event.request.method) < 0) {
                                 const clonedResponse = resp.clone();
                                 caches.open(CURRENT_CACHES.dynamic)
                                     .then(cache => {
