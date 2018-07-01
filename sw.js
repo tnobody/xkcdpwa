@@ -1,12 +1,24 @@
-const current_caches = {
+const CURRENT_CACHES = {
     static: 'static-cache-v1',
     dynamic: 'dynamic-cache-v1'
 };
 
+const NON_CACHE_METHODS = [
+    'POST',
+    'PUT',
+    'DELETE'
+];
+
+const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+
+const isImageURL = (url) => /https:\/\/imgs.xkcd.com\/comics/g.test(url);
+const isDataURL = (url) => /https:\/\/xkcd.now.sh/g.test(url);
+const proxyUrl = (url) => PROXY_URL + url;
+
 self.oninstall = (event) => {
     console.log('[Service Worker] Installing service worker...', event);
     event.waitUntil(
-        caches.open(current_caches.static)
+        caches.open(CURRENT_CACHES.static)
             .then(cache => {
                     cache.addAll(
                         [
@@ -28,6 +40,7 @@ self.oninstall = (event) => {
                             './img/icons/apple-icon-72x72.png',
                             './img/icons/apple-icon-180x180.png',
                             './img/icons/apple-icon-120x120.png',
+                            './img/logo.png'
                         ]
                     )
                         .catch(error => console.log('Failed to initialize HTML cache:', error));
@@ -39,7 +52,7 @@ self.oninstall = (event) => {
 self.onactivate = (event) => {
     console.log('[Service Worker] Activating service worker...', event);
 
-    const active_caches = Object.keys(current_caches).map(key => (current_caches[key]));
+    const active_caches = Object.keys(CURRENT_CACHES).map(key => (CURRENT_CACHES[key]));
 
     event.waitUntil(caches.keys()
         .then(cacheNames => {
@@ -60,59 +73,26 @@ self.onactivate = (event) => {
 self.onfetch = (event) => {
     console.log(event);
     event.respondWith(
-        fetch(event.request)
-            .then(resp => {
-                return resp
+        caches.match(event.request)
+            .then(cachedResonse => {
+                if (cachedResonse) {
+                    return cachedResonse;
+                } else {
+                    const target = isImageURL(event.request.url) ? proxyUrl(event.request.url) : event.request.url;
+                    const fetchedResponse = fetch(target);
+                    return fetchedResponse
+                        .then(resp => {
+                            console.log(resp);
+                            if (!isDataURL(event.request.url) && NON_CACHE_METHODS.indexOf(event.request.method) < 0) {
+                                const clonedResponse = resp.clone();
+                                caches.open(CURRENT_CACHES.dynamic)
+                                    .then(cache => {
+                                        cache.put(event.request, clonedResponse);
+                                    });
+                            }
+                            return resp
+                        });
+                }
             })
     );
-    // event.respondWith(
-    //     caches.match(event.request)
-    //         .then(cachedResponse => {
-    //             if (cachedResponse) {
-    //                 return cachedResponse;
-    //             } else {
-    //                 return fetch(event.request)
-    //                     .then(fetchedResponse => {
-    //                         const clonedResponse = fetchedResponse.clone();
-    //                         if (fetchedResponse.ok) {
-    //                             return fetchedResponse;
-    //                         } else {
-    //                             if (isContentUrl(fetchedResponse.url)) {
-    //                                 clonedResponse.json().then(json => {
-    //                                     contentCache.cache(event.request.url, json);
-    //                                 });
-    //                                 return fetchedResponse;
-    //                             } else if (!isAuthUrl(fetchedResponse.url)) {
-    //                                 return caches.open(currentConfig.caches.dynamic)
-    //                                     .then(cache => {
-    //                                         if (event.request.method !== 'PUT' && event.request.method !== 'POST' && event.request.method !== 'DELETE') {
-    //                                             cache.put(event.request, clonedResponse);
-    //                                         }
-    //                                         return fetchedResponse;
-    //                                     })
-    //                                     .catch(reason => console.log("An error occured while caching data:", reason));
-    //                             } else {
-    //                                 return fetchedResponse;
-    //                             }
-    //                         }
-    //                     })
-    //                     .catch(reason => {
-    //                         if (isContentUrl(event.request.url)) {
-    //                             const cachedContent = contentCache.match(event.request.url);
-    //                             if (cachedContent) {
-    //                                 const init = {
-    //                                     "status": 200,
-    //                                     "statusText": "Cached response",
-    //                                     "Content-Type": "application/json"
-    //                                 };
-    //                                 return cachedContent.then(json => {
-    //                                     return new Response(JSON.stringify(json), init);
-    //                                 });
-    //                             }
-    //                             console.log("No cached data found")
-    //                         }
-    //                         console.log("An error occured while fetching data:", reason)
-    //                     });
-    //             }
-    //         }));
 };
