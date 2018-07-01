@@ -58,7 +58,12 @@ self.onactivate = (event) => {
 };
 
 self.onfetch = (event) => {
-    event.respondWith(fetch(event.request));
+    event.respondWith(
+        fetch(event.request)
+            .then(resp => {
+                return resp
+            })
+    );
     // event.respondWith(
     //     caches.match(event.request)
     //         .then(cachedResponse => {
