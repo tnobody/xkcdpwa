@@ -35,6 +35,8 @@
 @media screen and (min-width : 1024px) {
     :root {
         --image-width: fit-content;
+        --image-width: -moz-fit-content;
+        --image-width: -webkit-fit-content;
     }
 }
 
@@ -55,6 +57,11 @@
 #comicName {
     padding-top: 0.5em;
     padding-bottom: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
 }
 
 @media screen and (min-width : 768px) {
