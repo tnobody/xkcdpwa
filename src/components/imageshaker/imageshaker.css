@@ -1,5 +1,6 @@
 :root {
     --image-width: 280px;
+    --opera-image-width: 280px;
     --webkit-image-width: 280px;
     --moz-image-width: 280px;
 }
@@ -7,6 +8,7 @@
 @media screen and (min-width : 360px) {
     :root {
         --image-width: 320px;
+        --opera-image-width: 320px;
         --webkit-image-width: 320px;
         --moz-image-width: 320px;
     }
@@ -15,6 +17,7 @@
 @media screen and (min-width : 375px) {
     :root {
         --image-width: 335px;
+        --opera-image-width: 335px;
         --webkit-image-width: 335px;
         --moz-image-width: 335px;
     }
@@ -23,6 +26,7 @@
 @media screen and (min-width : 411px) {
     :root {
         --image-width: 371px;
+        --opera-image-width: 371px;
         --webkit-image-width: 371px;
         --moz-image-width: 371px;
     }
@@ -31,6 +35,7 @@
 @media screen and (min-width : 414px) {
     :root {
         --image-width: 374px;
+        --opera-image-width: 374px;
         --webkit-image-width: 374px;
         --moz-image-width: 374px;
     }
@@ -39,6 +44,7 @@
 @media screen and (min-width : 768px) {
     :root {
         --image-width: 728px;
+        --opera-image-width: 728px;
         --webkit-image-width: 728px;
         --moz-image-width: 728px;
     }
@@ -47,25 +53,30 @@
 @media screen and (min-width : 1024px) {
     :root {
         --image-width: fit-content;
-        --webkit-image-width: -webkit-fit-content;
+        --opera-image-width: -webkit-fit-content;
+        --webkit-image-width: -webkit-fill-available;
         --moz-image-width: -moz-fit-content;
     }
 }
 
-.comic {
+/* .comic {
     width: var(--image-width);
-}
+    width: var(--opera-image-width);
+    width: var(--webkit-image-width);
+    width: var(--moz-image-width);
+} */
 
 #comicContainer {
     padding-top: 1.5em;
 }
 
 #imageContainer {
-    width: var(--image-width);
-    width: var(--webkit-image-width);
-    width: var(--moz-image-width);
     margin-left: auto;
     margin-right: auto;
+    width: var(--opera-image-width);
+    width: var(--webkit-image-width);
+    width: var(--moz-image-width);
+    width: var(--image-width);
 }
 
 #comicName {
@@ -80,6 +91,11 @@
 
 @media screen and (min-width : 768px) {
     #comicName {
+        font: 1.5em "Century Gothic", Futura, sans-serif;
+    }
+}
+@media screen and (min-width : 768px) {
+    .buttongroup button {
         font: 1.5em "Century Gothic", Futura, sans-serif;
     }
 }
@@ -102,10 +118,3 @@
     margin-bottom: 1.5em;
     color: black
 }
-
-@media screen and (min-width : 768px) {
-    .buttongroup button {
-        font: 1.5em "Century Gothic", Futura, sans-serif;
-    }
-}
-

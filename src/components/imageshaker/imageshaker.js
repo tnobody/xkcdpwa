@@ -82,25 +82,28 @@ export default class ImageShaker extends React.Component {
     });
   };
 
-  render = () => {
-    const currentPayload = this.state.history[this.state.currentIndex];
-
-    console.log(this.state.currentIndex);
-    console.log(this.state.history);
-    return (
-      <div id={"comicContainer"}>
+  renderComic = payload => {
+    if (payload) {
+      return (
         <div id={"imageContainer"}>
-          <img
-            className={"comic"}
-            src={currentPayload.img}
-            alt={currentPayload.alt}
-          />
+          <img className={"comic"} src={payload.img} alt={payload.alt} />
           <div id={"comicName"}>
             <span>
-              #{currentPayload.num} | {currentPayload.title}
+              #{payload.num} | {payload.title}
             </span>
           </div>
         </div>
+      );
+    }
+    return <div id={"imageContainer"} />;
+  };
+
+  render = () => {
+    const currentPayload = this.state.history[this.state.currentIndex];
+
+    return (
+      <div id={"comicContainer"}>
+        {this.renderComic(currentPayload)}
         <div className={"buttongroup"}>
           {this.state.currentIndex > 1 && (
             <button onClick={this.prev}>&lt;</button>
