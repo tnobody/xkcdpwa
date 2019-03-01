@@ -1,14 +1,17 @@
 {
   "name": "xkcdpwa",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "repository": "https://github.com/s1hofmann/xkcdpwa",
   "homepage": "https://s1hofmann.github.io/xkcdpwa",
+  "license": "MIT",
   "dependencies": {
-    "gh-pages": "^1.2.0",
-    "jshint": "^2.9.5",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
-    "shake.js": "^1.2.2"
+    "gh-pages": "^2.0.1",
+    "jshint": "^2.10.1",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "2.1.5",
+    "shake.js": "^1.2.2",
+    "typescript": "^3.3.3333"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,5 +20,11 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
