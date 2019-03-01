@@ -1,11 +1,13 @@
 import React from "react";
 
 import "./imageshaker.css";
+import { Seismograph } from "./Seismograph";
 import currentConfig from "../../config";
 
 export default class ImageShaker extends React.Component {
   constructor(props) {
     super(props);
+    this.seismograph = null;
     this.state = {
       history: [{}],
       currentIndex: 0
@@ -21,7 +23,21 @@ export default class ImageShaker extends React.Component {
 
   componentDidMount = () => {
     this.updateImage();
+    if (!this.seismograph) {
+      this.seismograph = new Seismograph({
+        minShakes: this.props.minShakes || 3,
+        onShake: this.updateImage,
+        delay: this.props.delay || 1500
+      });
+    }
+    this.seismograph.startRecording();
   };
+
+  componentWillUnmount() {
+    if (this.seismograph) {
+      this.seismograph.stopRecording();
+    }
+  }
 
   getDataUrl = range => {
     let url = currentConfig.dataUrl;
