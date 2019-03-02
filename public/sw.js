@@ -1,6 +1,6 @@
 const CURRENT_CACHES = {
-  static: "static-cache-v1",
-  dynamic: "dynamic-cache-v1"
+  static: "static-cache-v2",
+  dynamic: "dynamic-cache-v2"
 };
 
 const NON_CACHE_METHODS = ["POST", "PUT", "DELETE"];
