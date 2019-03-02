@@ -1,8 +1,8 @@
 import React from "react";
 
 import "./imageshaker.css";
-import { Seismograph } from "./Seismograph";
 import currentConfig from "../../config";
+import { Seismograph } from "device-motion";
 
 export default class ImageShaker extends React.Component {
   constructor(props) {
@@ -26,6 +26,7 @@ export default class ImageShaker extends React.Component {
     if (!this.seismograph) {
       this.seismograph = new Seismograph({
         minShakes: this.props.minShakes || 3,
+        minAmplitude: this.props.minAmplitude|| 3,
         onShake: this.updateImage,
         delay: this.props.delay || 1500
       });
