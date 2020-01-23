@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - "10"
 scripts:
-  - npm run deploy
+  - npm run deploy -- --repo=https://${GH_TOKEN}@github.com/tnobody/xkcdpwa.git
