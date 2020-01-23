@@ -43,9 +43,10 @@ export default class ImageShaker extends React.Component {
   getDataUrl = range => {
     let url = currentConfig.dataUrl;
     if (range) {
-      url += Math.floor(Math.random() * (range - 1) + 1);
+      const id = Math.floor(Math.random() * (range - 1) + 1);
+      return `${ulr}${id}/info.0.json`
     }
-
+    
     return url;
   };
 
@@ -65,7 +66,6 @@ export default class ImageShaker extends React.Component {
   fetchPayload = url => {
     return fetch(url)
       .then(response => response.json())
-      .then(body => body)
       .catch(err => console.log(err));
   };
 

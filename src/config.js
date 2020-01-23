@@ -1,5 +1,5 @@
 const currentConfig = {
-  dataUrl: "https://xkcd.now.sh/"
+  dataUrl: "https://xkcd.com/"
 };
 
 export default currentConfig;
